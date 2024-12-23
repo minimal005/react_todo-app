@@ -10,8 +10,12 @@ export const Form: React.FC = () => {
   const { todos, isDeleted } = useContext(TodoContext);
 
   useEffect(() => {
-    if ((field && !todos.length) || isDeleted) {
-      field.current?.focus();
+    if (!field.current) {
+      return;
+    }
+
+    if (!todos.length || isDeleted) {
+      field.current.focus();
     }
   }, [todos.length, isDeleted]);
 
@@ -25,7 +29,6 @@ export const Form: React.FC = () => {
         type="text"
         className="todoapp__new-todo"
         placeholder="What needs to be done?"
-        autoFocus
       />
     </form>
   );
