@@ -1,4 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
+import React, { useContext, Dispatch, SetStateAction } from 'react';
+import { TodoContext } from '../store/TodoContext';
+import { useTodoItem } from '../hooks/useTodoItem';
+
+import cn from 'classnames';
 
 import { Todo } from '../types/Todo';
 
@@ -8,40 +12,17 @@ export type Props = {
   setShowEditId: Dispatch<SetStateAction<number | null>>;
 };
 
-import cn from 'classnames';
-import React, { useContext, useState } from 'react';
-import { TodoContext } from '../store/TodoContext';
-
 export const TodoItem: React.FC<Props> = ({
   todo,
   showEditId,
   setShowEditId,
 }) => {
-  const { changeComplete, handleDeleteTodo, editTitle, setIsDeleted } =
-    useContext(TodoContext);
-
-  const [title, setTitle] = useState(todo.title);
-
-  const handleSubmitEditedTodo = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!title.trim().length) {
-      handleDeleteTodo(todo);
-      setIsDeleted(true);
-    } else if (title.trim() === todo.title) {
-      setShowEditId(null);
-    } else if (showEditId && title.trim()) {
-      editTitle(todo, title);
-      setShowEditId(null);
-    }
-  };
-
-  const handleEscape = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setTitle(todo.title);
-      setShowEditId(null);
-    }
-  };
+  const { changeComplete, handleDeleteTodo } = useContext(TodoContext);
+  const { handleEscape, handleSubmitEditedTodo, title, setTitle } = useTodoItem(
+    todo,
+    setShowEditId,
+    showEditId,
+  );
 
   return (
     <div data-cy="Todo" className={cn('todo', { completed: todo.completed })}>

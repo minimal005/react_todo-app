@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 
-// import { TodoItem } from './TodoItem';
 import { TodoContext } from '../store/TodoContext';
 import { TodoItem } from './TodoItem';
 

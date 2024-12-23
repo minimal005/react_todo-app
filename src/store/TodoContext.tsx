@@ -6,14 +6,15 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-
-import { Todo } from '../types/Todo';
-import { Field } from '../types/Field';
 import {
   getLocaleStorageTodos,
   setLocaleStorageTodos,
 } from '../utils/localStorageTodos';
+
 import { filterByTodos, filteredTodos } from '../service/service';
+
+import { Todo } from '../types/Todo';
+import { Field } from '../types/Field';
 
 type TodoContextType = {
   todos: Todo[];
@@ -153,7 +154,6 @@ export const TodoProvider: React.FC<Props> = ({ children }) => {
       editField,
       changeComplete,
       changeCompleteAll,
-
       deleteCompletedTodos,
     }),
     [
