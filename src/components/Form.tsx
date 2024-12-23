@@ -25,6 +25,7 @@ export const Form: React.FC = () => {
         type="text"
         className="todoapp__new-todo"
         placeholder="What needs to be done?"
+        autoFocus
       />
     </form>
   );
