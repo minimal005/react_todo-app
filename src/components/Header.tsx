@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     <header className="todoapp__header">
       {!!todos.length && (
         <button
-          onClick={() => changeCompleteAll()}
+          onClick={changeCompleteAll}
           type="button"
           className={cn('todoapp__toggle-all', {
             active: !completedTodosLength,
