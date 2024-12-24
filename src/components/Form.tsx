@@ -1,23 +1,17 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useForm } from '../hooks/useForm';
-import { TodoContext } from '../store/TodoContext';
 
 export const Form: React.FC = () => {
   const field = useRef<HTMLInputElement>(null);
 
   const { query, handleAddTodo, handleChangeQuery } = useForm();
-  const { todos, isDeleted } = useContext(TodoContext);
 
   useEffect(() => {
-    if (!field.current) {
-      return;
-    }
-
-    if (!todos.length || isDeleted) {
+    if (field.current) {
       field.current.focus();
     }
-  }, [todos.length, isDeleted]);
+  }, []);
 
   return (
     <form onSubmit={handleAddTodo}>
