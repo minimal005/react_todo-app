@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { buttons } from '../service/service';
+import { buttons } from '../helpers/todosHelpers';
 
 import cn from 'classnames';
 import { TodoContext } from '../store/TodoContext';
